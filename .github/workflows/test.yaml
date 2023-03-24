@@ -17,7 +17,15 @@ jobs:
       with:
         python-version: '3.9'
         architecture: 'x64'
-
+        
+    - name: Install pylint
+      run: |
+        pip install pylint
+        
+    - name: Create pylintrc file
+      run: |
+        pylint --generate-rcfile > .pylintrc
+        
     - name: Linter test
       run: |
         pylint --disable=all $(git ls-files '*.py')
