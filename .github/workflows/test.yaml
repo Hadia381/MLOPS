@@ -26,10 +26,7 @@ jobs:
       run: |
         . venv/bin/activate
         pip install --upgrade pip
-    - name: Install requirements
-      run: |
-        pip install -r requirements.txt
-        pip freeze > requirements.txt
+
         
     - name: Linter test
       run: |
