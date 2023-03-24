@@ -6,3 +6,6 @@ flask
 pandas
 streamlit
 joblib
+pillow
+pylint
+black
