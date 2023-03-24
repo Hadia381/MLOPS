@@ -3,7 +3,7 @@ name: My Workflow
 on:
   push:
     branches:
-      
+      - main
 
 jobs:
   my_job:
@@ -15,16 +15,21 @@ jobs:
     - name: Set up Python environment
       uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
+        python-version: '3.8'
         architecture: 'x64'
-        
-    - name: Install pylint
+
+    - name: Create virtual environment
+      run: python -m venv venv
+      # This creates a virtual environment in a folder called `venv`.
+
+    - name: Activate virtual environment
       run: |
-        pip install pylint
-        
-    - name: Create pylintrc file
+        . venv/bin/activate
+        pip install --upgrade pip
+    - name: Install requirements
       run: |
-        pylint --generate-rcfile > .pylintrc
+        pip install -r requirements.txt
+        pip freeze > requirements.txt
         
     - name: Linter test
       run: |
